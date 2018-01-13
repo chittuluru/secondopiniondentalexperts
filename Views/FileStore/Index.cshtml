@@ -1,0 +1,92 @@
+﻿@model SecondOpinion.Models.Request
+@{
+    ViewBag.Title = "File Attachements";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="container" id="Services-carousel">
+    <div class="row">
+        <div class="col-sm-12">
+            @using (Html.BeginForm("UploadFiles", "FileStore", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                
+                var fileType="UploadedFiles";
+
+                <fieldset>
+                    <legend>Uploaded Files</legend>
+                    <div class="editor-label">
+                      <label>Files:</label>
+                    </div>
+                    <div class="editor-field">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <input type="hidden" name="Type" value=@fileType />
+                        <input type="file" name="file" multiple="multiple" />
+                    </div>
+                    <br/>
+                    <p>
+                        <input type="submit" value="Upload" />
+                    </p>
+                    <br/>
+                </fieldset>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="demo">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>File Name</th>
+                            <th>Extension</th>
+                            <th>Uploaded Date</th>
+                            @if (!this.User.IsInRole("Patient")) 
+                            {
+                            <th>File Link</th>
+                            }
+                            else
+                            {
+                                <th></th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.FileStores) {
+                        if(item.Type == "UploadedFiles")
+                            {
+                        <tr id="@item.Id">    
+                            <td>@item.FileName</td>
+                            <td>@item.Extension</td>
+                            <td>@item.UploadedDate</td>
+
+                            @if (this.User.IsInRole("Patient")) 
+                            {
+                                using (Html.BeginForm("DeleteFile", "FileStore", FormMethod.Post, new { id = "FileStore_"+ @item.Id}))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    var fileType="UploadedFiles";
+
+                                    <input type="hidden" name="Id" value="@item.Id" />
+                                    <input type="hidden" name="Type" value=@fileType />
+                                    var ID = "FileStore_"+ @item.Id;
+            
+                                    <td><a href="#" onclick="document.forms['@ID'].submit(); return false;"><span class="glyphicon glyphicon-remove"></span>Delete</a></td>
+                                }
+                            }
+                            else
+                            {
+                                <td>@Html.ActionLink(item.FileName, "DownloadFile", "FileStore", new {fileId = @item.Id, fileType = @item.Type},null)</td>
+                            }
+                        </tr>
+                        }}
+                    </tbody>
+                </table>
+                <div>@Html.ActionLink("Back to List", "Index", "ServiceRequest")</div>
+            </div>
+        </div>
+    </div>
+</div>
+    

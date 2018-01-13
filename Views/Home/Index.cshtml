@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<head>
+    <title></title>
+</head>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="../../Images/Doctors1.jpg" alt="Second Opinion Dentists" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <h3>
+                    Our panel of highly qualified Indian dental experts is here to provide an inexpensive evaluation of any proposed dental treatment by your dentist or answer any dental related questions, all from the convenience of your own home.
+                </h3>
+            </div>
+        </div>
+        <div class="item">
+            <img src="../../Images/Doctors2.jpg" alt="Second Opinion Dentists" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <h3>
+                    Dental treatment plans can be very expensive, and even the most educated patient has difficulty with understanding a piece of paper with a bunch of tooth numbers and seeing what a dentist sees in X-rays or other dental data.
+                </h3>
+            </div>
+        </div>
+        <div class="item">
+            <img src="../../Images/Doctors3.jpg" alt="Second Opinion Dentists" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <h3>
+                    However, we all understand the bottom line, and that is the MONEY coming out of your pocket to complete the treatment as well as the TIME and possibly DISCOMFORT involved. Our website was created due to popular demand for you as a patient by experts in the field who truly care.
+                </h3>
+            </div>
+        </div>
+        <div class="item">
+            <img src="../../Images/Doctors4.jpg" alt="Second Opinion Dentists" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <h3>
+                    General dentists and dental specialists all have different types of training in dental school and after. Our expert team was carefully chosen based on having over 10 years of clinical experience, and obtaining the finest training available after dental school.Furthermore, our experts are from all dental specialties to ease your mind and to make certain that your dentist has provided a treatment plan that is customized to your needs and that the price is right.
+                </h3>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Services Offered</h2>
+        <p>
+            Know our available services and how they can save you a lot of money and choose a plan that best fits your needs.</p>
+        <p><a class="btn btn-primary" href="@Url.Action("Services", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Know our Process</h2>
+        <p>All of our services are tailored to fit your needs</p><br/><br/>
+        <p><a class="btn btn-primary" href="@Url.Action("Process", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>Getting started towards achieving a healthy smile is so easy! Just fill out the form.</p><br/>
+        <p><a class="btn btn-primary" href="@Url.Action("FillForm", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Fill the Form &raquo;</a></p>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")

@@ -1,0 +1,41 @@
+﻿@model SecondOpinion.Models.Request
+@{
+    ViewBag.Title = "Doctor Opinion Files";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="container" id="Services-carousel">
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="demo">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>File Name</th>
+                            <th>Extension</th>
+                            <th>Uploaded Date</th>
+                            <th>Download Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.FileStores) 
+                        {
+                          if(item.Type == "DoctorOpinion")
+                            {
+                                <tr id="@item.Id">    
+                                    <td>@item.FileName</td>
+                                    <td>@item.Extension</td>
+                                    <td>@item.UploadedDate</td>
+                                    <td>@Html.ActionLink(item.FileName, "DownloadFile", "FileStore", new {fileId = @item.Id, fileType = @item.Type},null)</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                <div>@Html.ActionLink("Back to List", "Index", "ServiceRequest")</div>
+            </div>
+        </div>
+    </div>
+</div>
+    

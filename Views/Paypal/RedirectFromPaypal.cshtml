@@ -1,0 +1,23 @@
+﻿@using System.Configuration
+@model SecondOpinion.Models.PayPalModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RedirectFromPaypal</title>
+</head>
+<body>
+    <div>
+        Checkout Paypal Success !^^
+    </div>
+    <br />
+    <form action="@Model.actionURL" method="POST">
+        <input type="hidden" name="cmd" value="_notify-synch">
+        <input type="hidden" name="tx" value="@ViewBag.tx">
+        <input type="hidden" name="at" value="@ConfigurationManager.AppSettings["Token"]">
+        <input type="submit" value="PDT" class="btn btn-primary">
+    </form>
+</body>
+</html>
